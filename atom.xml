@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title>My Octopress Blog</title>
-  <link href="http://locksmithdon.github.com/atom.xml" rel="self"/>
-  <link href="http://locksmithdon.github.com/"/>
-  <updated>2011-10-01T08:06:21-07:00</updated>
-  <id>http://locksmithdon.github.com/</id>
+  <title>code.locksmith.net</title>
+  <link href="http://code.locksmithdon.net/atom.xml" rel="self"/>
+  <link href="http://code.locksmithdon.net/"/>
+  <updated>2011-10-01T22:52:48-07:00</updated>
+  <id>http://code.locksmithdon.net/</id>
   <author>
-    <name>Your Name</name>
+    <name>Don Smith</name>
     
   </author>
 
