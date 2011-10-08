@@ -1,15 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>
+            http://code.locksmithdon.net/blog/2010/10/02/rspec-helper-examples-with-content-for-calls/
+        </loc>
+        <lastmod>2011-10-08T08:39:06-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://code.locksmithdon.net/blog/2010/10/08/ruby-koans-enlightenment-through-truth/
+        </loc>
+        <lastmod>2011-10-08T11:24:31-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://code.locksmithdon.net/blog/2011/10/02/my-presentations-from-russia/</loc>
-        <lastmod>2011-10-02T14:59:59-07:00</lastmod>
+        <lastmod>2011-10-08T08:30:53-07:00</lastmod>
     </url>
     <url>
         <loc>http://code.locksmithdon.net/blog/archives/</loc>
-        <lastmod>2011-10-02T14:59:59-07:00</lastmod>
+        <lastmod>2011-10-08T11:24:31-07:00</lastmod>
     </url>
     <url>
         <loc>http://code.locksmithdon.net/</loc>
-        <lastmod>2011-10-02T14:59:59-07:00</lastmod>
+        <lastmod>2011-10-08T11:24:31-07:00</lastmod>
     </url>
 </urlset>
