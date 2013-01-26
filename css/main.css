@@ -1,0 +1,114 @@
+/* 
+ * Colours 
+ * --------------
+ * Dark Green     rgb(20, 31, 38)     #141F26
+ * Green          rgb(43, 64, 64)     #2B4040
+ * Light Green    rgb(64, 89, 80)     #405950
+ * Lighter Green  rgb(48, 115, 91)    #30735B
+ * Beige          rgb(166, 158, 134)  #A69E86
+ * Light Beige    rgb(242, 217, 187)  #F2D9BB
+ * Almost White   rgb(242, 239, 235)  #F2EFEB
+ */
+
+
+html {
+  /* to support rem-based sizing/positioning */
+  font-size: 62.5%; 
+}
+
+h1, h2, h3, p, blockquote, body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #F2EFEB;
+  line-height: 2rem;
+  font-size: 1.6rem;
+  color: #141F26;
+}
+
+h1, h2, h3 {
+  font-family: Candara, Helvetica, Arial, san-sarif;
+  line-height: 3.6rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #405950;
+}
+
+h1 {
+  font-size: 3.2rem;
+  margin-bottom: 1.2rem;
+}
+
+h2 {
+  font-size: 2.6rem;
+  margin-bottom: 0.8rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+a {
+  color: #30735B;
+  text-decoration: none;
+}
+a:visited {
+  color: #405950;
+}
+
+a img {
+  border: none;
+}
+
+.post {
+  margin-bottom: 5rem;
+}
+
+.date {
+  color: #A69E86;
+  margin-bottom: 0.5rem;
+}
+
+.content, footer {
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+#archive {
+  color: #A69E86;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.more {
+  height: 1.6rem;
+  display: inline-block;
+}
+.read-more {
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.gist {
+  margin-top: 2rem;
+}
+
+footer {
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+}
+
+@media all and (min-width: 1000px) {
+  .content {
+    width: 70rem;
+  }
+}
+@media all and (max-width: 1000px) {
+  .content {
+    width: 90%;
+  }
+}

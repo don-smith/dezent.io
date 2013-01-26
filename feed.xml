@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>   
+    <title>code.locksmithdon.net</title>
+    <atom:link href="http://localhost:8080/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <link>http://localhost:8080</link>
+    <description></description>
+    <pubDate>Sun, 02 Oct 2011 14:15:00 +1300</pubDate>
+    <generator>The mighty Wintersmith</generator>
+    <language>en</language>
+    <item>
+      <title>Presentations from Russia</title>
+      <link>http://localhost:8080/articles/presentations-from-russia/</link>
+      <pubDate>Sun, 02 Oct 2011 14:15:00 +1300</pubDate>
+      <guid isPermaLink="true">http://localhost:8080/articles/presentations-from-russia/</guid>
+      <author></author>
+      <description>&lt;p&gt;Last week I had the privilege of joining my Russian comrades in Moscow and St. Petersburg for the &lt;a href=&quot;http://pnpsummit.ru&quot;&gt;patterns &amp; practices Summit Russia&lt;/a&gt;. Another great example of conference planning at its finest. And the attendees were really engaged. Nice! 
+
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;/p&gt;
+&lt;p&gt;My talks were on building single-page web interfaces with modern tools and technologies and applying modularity to your JavaScript. Overall I think they went over pretty well. It was my first time using a web browser instead of PowerPoint. It certainly tool longer to put them together, but it was cool to be able to iframe another page in the slide and run JavaScript &lt;em&gt;in&lt;/em&gt; the presentation. You can find them here:
+
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://locksmithdon.net/talks/html5spi.html&quot;&gt;HTML5 Single-page Interfaces&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://locksmithdon.net/talks/jsmodularity.html&quot;&gt;Modular JavaScript with Plugins and Widgets&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I used the &lt;a href=&quot;https://github.com/robflaherty/html-slideshow&quot;&gt;html-slideshow&lt;/a&gt; as a starting point and added &lt;a href=&quot;http://alexgorbatchev.com/SyntaxHighlighter&quot;&gt;SyntaxHighlighter&lt;/a&gt; and other stuff to meet my needs. I would like to clean up what I have since I definitely cut some corners while rushing to finish them in time, but I need to get &lt;a href=&quot;http://liike.github.com&quot;&gt;project liike&lt;/a&gt; off the ground first. Specifically, it would be good to handle the hashchange event so the back button worked as expected and improve the way the run button executes JavaScript. And I should to the proper thing by forking and sending a pull request. It&apos;s on the todo list ;)
+&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Ruby Koans: Enlightenment Through Truth</title>
+      <link>http://localhost:8080/articles/ruby-koans/</link>
+      <pubDate>Fri, 08 Oct 2010 11:13:00 +1300</pubDate>
+      <guid isPermaLink="true">http://localhost:8080/articles/ruby-koans/</guid>
+      <author></author>
+      <description>&lt;p&gt;As a big fan of Buddhism and an aspiring Rubyist, I’m really gaining a wonderful appreciation for the &lt;a href=&quot;http://github.com/edgecase/ruby_koans&quot;&gt;Ruby Koans&lt;/a&gt;. They are such a brilliant way of giving to the community and getting your name out there. Thank you EdgeCase! Excellent work!
+&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>RSpec Helper Examples with content_for Calls</title>
+      <link>http://localhost:8080/articles/rspec-helper-examples-with-content_for-calls/</link>
+      <pubDate>Sat, 02 Oct 2010 18:10:00 +1300</pubDate>
+      <guid isPermaLink="true">http://localhost:8080/articles/rspec-helper-examples-with-content_for-calls/</guid>
+      <author></author>
+      <description>&lt;p&gt;On a Rails app I’m building, I have a helper method that makes it easier to have unique page titles on each page using an approach Ryan Bates explains in &lt;a href=&quot;http://railscasts.com/episodes/30-pretty-page-title&quot;&gt;Railscasts episode #30: Pretty Page Title&lt;/a&gt;. I suspect a LOT of Rails developers are using this approach too. Here’s the idea:
+
+&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/608334.js?file=application.html.erb&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/608334.js?file=application_helper.rb&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://gist.github.com/608334.js?file=index.html.erb&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Well, I wanted to retroactively write an example for it and how to do it wasn’t immediately obvious to me (‘cause I’m still a n00b). I thought the solution was pretty cool. Once I learned the content_for method was actually a helper method and available via ‘helper’, it came pretty quick. Here’s the rspec example:
+
+&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/608334.js?file=application_helper_spec.rb&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;That’s it. I don’t know how critical this kind of test is, but at least I learned something while forcing myself to write it.
+&lt;/p&gt;
+</description>
+    </item>
+  </channel>
+</rss>
