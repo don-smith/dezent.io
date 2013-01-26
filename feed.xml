@@ -5,9 +5,38 @@
     <atom:link href="http://localhost:8080/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://localhost:8080</link>
     <description></description>
-    <pubDate>Sun, 02 Oct 2011 14:15:00 +1300</pubDate>
+    <pubDate>Sat, 26 Jan 2013 18:09:00 +1300</pubDate>
     <generator>The mighty Wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>New Blog Platform</title>
+      <link>http://localhost:8080/articles/new-blog-platform/</link>
+      <pubDate>Sat, 26 Jan 2013 18:09:00 +1300</pubDate>
+      <guid isPermaLink="true">http://localhost:8080/articles/new-blog-platform/</guid>
+      <author></author>
+      <description>&lt;p&gt;I&apos;m one of those bloggers that change their blog platform more often than is really required. I&apos;m also one of the bloggers that don&apos;t blog very often - and when I do, the posts usually start with how I&apos;m going to do it more often. This time, however, I&apos;ll just talk about what I&apos;m using now and why.
+
+&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;/p&gt;
+&lt;p&gt;When I switched to my previous platform, &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt;, I was excited to be using a static site generator. I agree with &lt;a href=&quot;http://www.mickgardner.com/2012/12/an-introduction-to-static-site.html&quot;&gt;Mick Gardner on the virtues of static site generators&lt;/a&gt;. I also liked the ability to author them in &lt;a href=&quot;http://daringfireball.net/projects/markdown&quot;&gt;markdown&lt;/a&gt;, use &lt;a href=&quot;http://github.com&quot;&gt;source control&lt;/a&gt; for the posts, and publish to &lt;a href=&quot;http://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;. At the time I was really enjoying writing code in &lt;a href=&quot;http://www.ruby-lang.org/en/&quot;&gt;Ruby&lt;/a&gt;.
+
+&lt;/p&gt;
+&lt;p&gt;While I still think Ruby is a fantastic language, my infatuation with &lt;a href=&quot;http://nodejs.org&quot;&gt;Node.js&lt;/a&gt; overcame me a couple of years ago and it&apos;s been a beautiful affair ever since. Becuase I&apos;m not a regular blogger, there wasn&apos;t a rush to change platforms, despite the itch. During one of my scratching sessions, I ran across Boris Mann&apos;s post on &lt;a href=&quot;http://blog.bmannconsulting.com/node-static-site-generators/&quot;&gt;Node Based Static Site Generators&lt;/a&gt;. I had known about &lt;a href=&quot;http://github.com/creationix/wheat&quot;&gt;Wheat&lt;/a&gt; for a long time, and spent some time evaluating &lt;a href=&quot;http://github.com/flatiron/blacksmith&quot;&gt;Blacksmith&lt;/a&gt;, which I found a little to incomplete for my needs, &lt;a href=&quot;http://github.com/bevry/docpad&quot;&gt;DocPad&lt;/a&gt;, which I found to be heavier than I needed for my blog, but will likely use it for other things, and &lt;a href=&quot;http://github.com/jnordberg/wintersmith&quot;&gt;Wintersmith&lt;/a&gt;, which I decided on.
+
+&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:8080/articles/new-blog-platform/wintersmith-logo.svg&quot; alt=&quot;Wintersmith Logo&quot;&gt;
+
+&lt;/p&gt;
+&lt;p&gt;Since my (only 3) existing posts were already in markdown, moving to the new generator was a snap. The only thing that was time consuming was applying the new design, which I wanted anyway. It&apos;s not done by the way, but I want to finish the upcoming easter egg before refining the design anymore.
+
+&lt;/p&gt;
+&lt;p&gt;Thanks &lt;a href=&quot;http://github.com/jnordberg&quot;&gt;Johan&lt;/a&gt;. I&apos;d like to eventually have a draft feature added. I&apos;ll send the pull request when I get around to it :)
+
+&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Presentations from Russia</title>
       <link>http://localhost:8080/articles/presentations-from-russia/</link>

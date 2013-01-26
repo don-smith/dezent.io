@@ -64,6 +64,10 @@ a img {
   border: none;
 }
 
+p {
+  margin-bottom: 2rem;
+}
+
 .post {
   margin-bottom: 5rem;
 }
@@ -84,10 +88,6 @@ a img {
   font-weight: bold;
 }
 
-.more {
-  height: 1.6rem;
-  display: inline-block;
-}
 .read-more {
   margin-top: 1rem;
   font-style: italic;
