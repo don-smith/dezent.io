@@ -71,6 +71,11 @@ p {
   margin-bottom: 2rem;
 }
 
+#logo {
+  border: 1px solid red;
+  margin-left: 5rem;
+}
+
 .post {
   margin-bottom: 5rem;
 }
