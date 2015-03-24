@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript Modularity with Plugins &amp; Widgets</title>
+
+    <link href="css/slideshow.css" rel="stylesheet" />
+    <link href="css/shCoreEclipse.css" rel="stylesheet" />
+    <link href="css/shThemeEclipse.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+
+    <script src="js/lib/modernizr-2.0.min.js"></script>
+    <script src="js/lib/respond.min.js"></script>
+</head>
+
+<body>
+    <header> 
+        <h1>JavaScript Modularity with Plugins &amp; Widgets</h1> 
+        <nav> 
+          <ul> 
+            <li><button id="prev-btn" title="Previous slide">Previous Slide</button></li> 
+            <li><span id="slide-number"></span>/<span id="slide-total"></span></li> 
+            <li><button id="next-btn" title="Next Slide">Next Slide</button></li> 
+          </ul> 
+        </nav> 
+    </header> 
+
+    
+    <div id="deck">
+    
+<section data-bg="title-bg"> 
+    <hgroup> 
+        <h1 class="title-text">Modular JavaScript with Plugins &amp; Widgets</h1> 
+    </hgroup> 
+    <div class="speaker-info">
+        <p>Don Smith</p> 
+  	    <p>Senior Program Manager</p>
+        <p>Microsoft patterns &amp; practices</p> 
+    </div>
+    <p id="instructions">Use arrow keys to navigate and Ctrl/Cmd -/+ to adjust text and positioning</p>
+</section> 
+
+<section> 
+    <hgroup> 
+        <h1>Agenda</h1> 
+    </hgroup> 
+    <ul>
+        <li>Consequences</li>
+        <li>An Example</li>
+        <li>Unit Testing</li>
+        <li>Types of Modules
+            <ul>
+                <li>Objects</li>
+                <li>jQuery Plugins</li>
+                <li>jQuery UI Widgets</li>
+            </ul>
+        </li>
+        <li>Identifying Module Boundaries</li>
+    </ul>
+    <div class="action abs" style="right: 3em; top: 6em; padding: .5em; border: .1em solid white">
+        <p><strong>Project Silk</strong><br/>
+        Client-side Web<br/>
+        Development for<br/>
+        Modern Browsers</p>
+        <p><a href="http://silk.codeplex.com">http://silk.codeplex.com</a></p>
+        <p><a href="http://tinyurl.com/projectsilk">http://tinyurl.com/projectsilk</a></p>
+    </div>
+</section> 
+
+<section>
+    <h1>Consequences</h1>
+    <ul>
+        <li>Better support for an immersive UI</li>
+        <li>Support for team-oriented development</li>
+        <li>Explicit control over application initialization</li>
+        <li>The ability to externally configure modules</li>
+        <li>Decoupled module interactions</li>
+        <li>Easier troubleshooting and debugging</li>
+        <li>Easier code base maintenance</li>
+        <li>Easier to [unit] test</li>
+        <p class="action">First step: Choose a library for DOM manipulation (jQuery)</p>
+    </ul>
+</section>
+
+<section>
+    <h1>A Delicious Example</h1>
+    <iframe src="3DeliciousQuickStarts/objects.htm"></iframe>
+</section>
+
+<section>
+    <h1>Unit Testing</h1>
+    <p>Assertions in QUnit:</p>
+    <ul>
+        <li>ok</li>
+        <li>equal</li>
+        <li>notEqual</li>
+        <li>deepEqual</li>
+        <li>notDeepEqual</li>
+        <li>strictEqual</li>
+        <li>notStrictEqual</li>
+        <li>raises</li>
+    </ul>
+    <div class="action abs" style="top: 7em; width: 21em; right: 2em">
+        <pre class="brush: js; class-name: small-code"> 
+            var ok = function ok(value, msg, results) {
+                var result = value ? 'pass' : 'fail';
+                $('&#60;div class="test-result"&#62;').text(msg)
+                    .addClass(result)
+                    .appendTo(results);
+            };
+        </pre>
+    </div>
+    <div class="action abs" style="top: 14em; width: 16em; right: 2em">
+        <pre class="brush: js; class-name: small-code"> 
+            ok(true, 'ok');
+            ok('100' == 100, 'equal');
+            ok('100' === 100, 'not equal');
+        </pre>
+        <button class="run-button right" data-code="test">Run</button>
+        <div id="test-result"></div>
+        <div class="code-to-run" id="test">
+            ok(true, 'ok', '#test-result');
+            ok('100' == 100, 'equal', '#test-result');
+            ok('100' === 100, 'not equal', '#test-result');
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <h1>Object Modules</h1>
+    <ul>
+        <li>Creating Objects</li>
+        <li>Defining Functions</li>
+        <li>Understanding Context</li>
+        <li>Immediate Functions
+            <ul>
+                <li>Private members</li>
+            </ul>
+        </li>
+        <li>When to use objects as modules</li>
+    </ul>
+</section>
+
+<section>
+    <h1>Object Modules</h1>
+    <h2>Creating Objects</h2>
+    <div class="abs" style="width: 13em">
+        <pre class="brush: js; class-name: small-code">
+            // While using the 'new'
+            // keyword is possible
+            var obj = new Object(); 
+            
+            // The object literal 
+            // syntax is preferred
+            var obj = {},
+                t = typeof obj;
+            ok(t == 'object', ':-)');
+        </pre>
+        <button class="run-button right" data-code="obj">Run</button>
+        <div id="obj-result"></div>
+        <div class="code-to-run" id="obj">
+            var obj = {},
+                t = typeof obj ;
+            ok(t == 'object', ':-)', '#obj-result');
+        </div>
+    </div>
+    <div class="abs" style="width: 17em; left: 16em">
+    <pre class="brush: js; class-name: small-code">
+        // Defining properties 
+        // and methods is easy
+        var obj = {
+            id: 44,
+            innerObj: {
+                prop: 'content',
+                run: function(arg) {
+                    return 'done';
+                }
+            }, // beware of the commas
+            ary: [12, 
+                'more', 
+                {'even-more': 'items'}]
+        };
+    </pre>
+    </div>
+</section>
+
+<section>
+    <h1>Object Modules</h1>
+    <h2>Defining Functions</h2>
+    <!-- <button class="run-button right" data-code="func">Run</button> -->
+    <pre class="brush: js; class-name: small-code">
+        // Function expression (anonymous) - preferred
+        var func1 = function(args) { return 'result'; };
+
+        // Function expression (named) - needed during recursion
+        var func2 = function func2(args) { };
+
+        // Function statement (named & hoisted) - can safely avoid
+        function func3(args) { }
+
+        // And can be passed into and out of functions
+        var func4 = function(arg) { return arg; };
+        var result = func4( func1 )();
+
+    </pre>
+    <div id="func-result"></div>
+    <div class="code-to-run" id="func">
+        var func1 = function(args) { };
+        ok(this.func1 == undefined, '1: ' + func1.name, '#func-result');
+        ok(func2 == undefined, '2: ' + func2.name, '#func-result');
+        var func2 = function func2(args) { };
+        ok(func2 == undefined, '2: ' + func2.name, '#func-result');
+        ok(func3 == undefined, '3: ' + func3.name, '#func-result');
+        function func3(args) { }
+    </div>
+</section>
+
+<section>
+    <h1>Object Modules</h1>
+    <h2>Understanding Context</h2>
+    <ul>
+        <li>Use <strong>this</strong> for the current context</li>
+        <li>Scope is functional - not block</li>
+        <li>Functions can be called using any context
+        <ul>
+            <li>Useful for things like pub/sub and events</li>
+        </ul>
+        </li>
+    </ul>
+    <div class="abs action" style="bottom: 1em; right: 1em; width: 26em;">
+    <pre class="brush: js; highlight: [2,3,5,6]; class-name: small-code">
+    // Differ only in how parameters are passed
+    // function.call(objContext, arg1, arg2)
+    // function.apply(objContext, argArray)
+    var obj = { p: 'foo' },
+        func = function() { return this.p || 'default'; },
+        result = func.call(obj);
+    ok(result == 'foo', 'context changed');
+    </pre>
+    <button class="run-button right" data-code="context">Run</button>
+    <div id="context-result"></div>
+    <div class="code-to-run" id="context">
+    var obj = { p: 'foo' },
+        func = function() { return this.p || 'default'; },
+        result = func.call(obj);
+    ok(result == 'foo', 'context changed', '#context-result');
+    </div>
+    </div>
+</section>
+
+<section>
+    <h1>Object Modules</h1>
+    <h2>Closures</h2>
+    <div class="abs" style="top: 10em; width: 30em;">
+    <pre class="brush: js; class-name: small-code">
+    var count = 0,
+        setupLinkHandler = function(link) {
+            link.addEventListener('click', function(e) {
+                this.text('Clicked ' + count + ' times');
+                e.preventDefault();
+            });
+        };
+    </pre>
+    </div>
+    <p>So variables can live beyond their scope</p>
+</section>
+
+<section>
+    <h1>Object Modules</h1>
+    <h2>Immediate Functions</h2>
+    <ul>
+        <li>Pass in only global object</li>
+        <li>Executes after parsed</li>
+        <li>Private members are <br/>
+            defined within the<br/>
+            immediate function</li>
+    </ul>
+    <div class="abs" style="top: 7em; width: 19em; right: 1em">
+    <pre class="brush: js; class-name: small-code">
+        (function(app, $, undefined) {
+            var priv1 = 'foo',
+                priv2 = 'bar',
+                calc = function() { 
+                    return 'baz'; 
+                };
+
+            app.myObj = {
+                prop: priv1 + calc(),
+                memb: function() {
+                    // impl
+                }
+            };
+        }(this.app = this.app || {}, jQuery));
+    </pre>
+    </div>
+</section>
+
+<section>
+    <h1>Object Modules</h1>
+    <h2>When to use objects as modules</h2>
+    <ul>
+        <li>When the object isn't operating on DOM nodes</li>
+        <li>When JavaScript provides enough functionality</li>
+    </ul>
+    <p class="action">Let's have a closer look at the QuickStart</p>
+</section>
+
+<section>
+    <h1>jQuery Plugin Modules</h1>
+    <ul>
+        <li>Selectors</li>
+        <li>The Wrapped Set</li>
+        <li>Declaring Plugins</li>
+        <li>Merging Options</li>
+        <li>When to use Plugins</li>
+    </ul>
+    <div class="action abs" style="right: 3em; top: 8em; padding: .5em; border: .1em solid white">
+        <p><strong>Notable things about jQuery</strong></p>
+        <ul>
+            <li><strong>$</strong> is the synonym for jQuery</li> 
+            <li>Made up of:
+                <ul>
+                    <li>Utility functions</li>
+                    <li>Element functions</li>
+                </ul>
+            </li>
+            <li>Method chaining is intentional</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h1>jQuery Plugin Modules</h1>
+    <h2>Selectors</h2>
+    <ul>
+        <li>Modelled after CSS selectors</li>
+        <li>Passed to the jQuery method</li>
+    </ul>
+    <div class="abs" style="width: 15em;">
+    <pre class="brush: js; class-name: small-code">
+    $('selector')
+    'element'
+    '#id'
+    '.class'
+    '.class1.class2'  // and
+    '.class1, class2' // or
+    'element decendent-element'
+    '#id > child-element'
+    'element[attribute]'
+    'element[attribute="value"]'
+    </pre>
+    </div>
+    <div class="abs" style="width: 15em; right: 2em">
+    <pre class="brush: js; class-name: small-code">
+    // And some useful extras
+    'element[attribute^="val"]' 
+    'element[attribute$="lue"]' 
+    ':button'
+    ':checked'
+    ':even'
+    ':nth-child(n)'
+
+    // To increase performance
+    $('selector', context)...
+    wrapper.find('selector')...
+    </pre>
+    </div>
+</section>
+
+<section>
+    <h1>jQuery Plugin Modules</h1>
+    <h2>The Wrapped Set</h2>
+    <ul>
+        <li>A special collection of elements</li>
+        <li>Can treat like an array</li>
+    </ul>
+    <div style="width: 26em;">
+        <pre class="brush: js; class-name: small-code">
+        var wrappedElems = $('<div></div>'),
+            wrappedElem = wrappedElems.first(),
+            nakedElem = wrappedElems[0];
+        ok(wrappedElem.css, 'wrapped');
+        ok(nakedElem.css, 'wrapped');
+        </pre>
+        <div class="code-to-run" id="wrap">
+        var wrappedElems = $('<div></div>'),
+            wrappedElem = wrappedElems.first(),
+            test = wrappedElems[0];
+        ok(wrappedElem.css, 'wrapped', '#wrap-result');
+        ok({}.css, 'wrapped', '#wrap-result'); // cheating :(
+        </div>
+        <button class="run-button right" data-code="wrap">Run</button>
+        <div id="wrap-result"></div>
+    </div>
+</section>
+
+<section>
+    <h1>jQuery Plugin Modules</h1>
+    <h2>Declaring Plugins</h2>
+    <div style="width: 26em;">
+    <pre class="brush: js; highlight: [3,4]; class-name: small-code">
+    (function ($, undefined) {
+        var timer;
+        $.fn.tagger = function () {
+            return this.each(function () {
+                var $this = $(this);
+                $this
+                .addClass('qs-tagged')
+                .bind('mouseenter', function (evnt) {
+                })
+                .bind('mouseleave', function () {
+                });
+            });
+        };
+    } (jQuery));
+    </pre>
+    </div>
+</section>
+
+<section>
+    <h1>jQuery Plugin Modules</h1>
+    <h2>Options</h2>
+    <div class="abs" style="width: 30em;">
+    <pre class="brush: js; highlight: [2,3,7]; class-name: small-code">
+    (function ($, undefined) {
+        $.fn.infobox = function(options){
+            this.options = { 
+                maxItems: 10,
+                dataUrl: 'http://feeds.delicious.com/v2/json/popular/'
+            };
+            $.extend(this.options, options);
+        };
+    } (jQuery));
+    </pre>
+    </div>
+</section>
+
+<section>
+    <h1>jQuery Plugin Modules</h1>
+    <h2>When to use Plugins</h2>
+    <ul>
+        <li>When changing multiple elements at once</li>
+        <li>When a function doesn't fit on another object</li>
+    </ul>
+    <p class="action">Let's have a closer look at the QuickStart</p>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <ul>
+        <li>How they work</li>
+        <li>Public &amp; Private methods</li>
+        <li>Lifetime Management</li>
+        <li>Options</li>
+        <li>Events</li>
+        <li>When to use</li>
+    </ul>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <h2>How they work</h2>
+    <ul>
+        <li>You supply an object prototype
+        <div class="abs" style="top: 6em; right: 1em; width: 16.5em;">
+        <pre class="brush: js; highlight: [2]; class-name: small-code">
+        (function ($, undefined) {
+          $.widget('qs.infobox'), {
+            displayTagLinks: function(){}
+          });
+        }(jQuery));
+        </pre>
+        </div>
+        </li>
+        <li class="action">Apply the widget to elements
+        <div style="width: 13em;">
+        <pre class="brush: js; class-name: small-code">
+        $('body').infobox();
+        </pre>
+        </div>
+        </li>
+        <li class="action">It will apply it to each element the widget is attached to
+        <div style="width: 30em;">
+        <pre class="brush: js; highlight: [1,5,6]; class-name: small-code">
+        $.widget = function(name, base, prototype) {
+            $.widget.bridge( name, $[ namespace ][ name ] );
+        };
+        $.widget.bridge = function( name, object ) {
+            $.fn[ name ] = function( options ) {
+                $.data( this, name, new object( options, this ) );
+            };
+        };
+        </pre>
+        </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <h2>Public &amp; Private methods</h2>
+    <ul>
+        <li>Public methods are invoked through the widget function
+        <div style="width: 30em;">
+        <pre class="brush: js; class-name: small-code">
+        $('body').infobox('displayTagLinks', args);
+        </pre>
+        </div>
+        </li>
+        <li>Private methods are prepended with an underscore
+        <div style="width: 30em;">
+        <pre class="brush: js; highlight: [2,3]; class-name: small-code">
+        $.widget('qs.tagger'), {
+            _create: function() {
+                this.element.addClass('qs-tagged');
+            }
+            displayTagLinks: function() { ... }
+        });
+        </pre>
+        </div>
+        <ul>
+            <li>This is <em>only</em> a convention - it can be circumvented</li>
+        </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <h2>Lifetime Management</h2>
+    <ul style="font-size: .8em">
+        <li>_create
+        <ul>
+            <li>Called when the widget is first applied</li>
+            <li>Typically used for adding classes, creating elements, <br/>applying other widgets, storing references</li>
+        </ul>
+        <li class="action">_init
+        <ul>
+            <li>Called each time the widget method is called on an element</li>
+            <li>Invoked after _create</li>
+            <li>Can be used as a <em>reset</em></li>
+            <li>Using this isn't very common</li>
+        </ul>
+        </li>
+        <li class="action">destroy
+        <ul>
+            <li>Removes a widget from an element</li>
+            <li>To be called by users of the widget</li>
+            <li>Cleans up all namespaced events</li>
+        </ul>
+        <div class="abs" style="bottom: 2em; right: 1em; width: 20em;">
+        <pre class="brush: js; highlight: [2,4,6]; class-name: small-code">
+        $.widget('qs.infobox'), {
+          destroy: function() {
+            // if using jQuery UI 1.8.x
+            $.Widget.prototype.destroy.call(this);
+            // if using jQuery UI 1.9.x
+            //this._destroy();
+          }
+        });
+        </pre>
+        </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <h2>Options</h2>
+    <ul>
+        <li>Merged with defaults automatically</li>
+        <li>Represent the widget's extensibility mechanism</li>
+        <li>Allow you to control coupling with other code</li>
+    </ul>
+    <div class="action" style="width: 30em;">
+    <pre class="brush: js; highlight: [3]; class-name: small-code">
+    $.widget('qs.infobox', {
+        options: {
+            dataUrl: '',
+            maxItems: 10
+        }
+    });
+    </pre>
+    <pre class="brush: js; highlight: [2,4,6]; class-name: small-code">
+    $('body').infobox({
+        dataUrl: 'http://feeds.delicious.com/v2/json/popular/'
+    });
+    </pre>
+    </div>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <h2>Events</h2>
+    <ul>
+        <li>Expose as an option (doesn't really expose it)</li>
+        <div class="tight-fit">
+        <pre class="brush: js; class-name: small-code">
+        $.widget('qs.tagger', {
+            options: { activated: $.noop() }
+        });
+        </pre>
+        </div>
+        <li>Attach handler through options</li>
+        <div class="tight-fit">
+        <pre class="brush: js; class-name: small-code">
+        $('span[data-tag]').tagger({
+            activated: function (event, data) {
+                infobox.infobox('displayTagLinks', event, data.name);
+            }
+        });
+        </pre>
+        </div>
+        <li>Fire event using _trigger</li>
+        <div class="tight-fit">
+        <pre class="brush: js; class-name: small-code">
+            that._trigger('activated', event, {name: tag});
+        </pre>
+        </div>
+    </ul>
+</section>
+
+<section>
+    <h1>jQuery UI Widget Modules</h1>
+    <h2>When to use widgets as modules</h2>
+    <ul>
+        <li>When the module needs an explicit interface</li>
+        <li>When you need more control over lifetime</li>
+        <li>When the module is storing state</li>
+    </ul>
+    <p class="action">Let's have a closer look at the QuickStart</p>
+</section>
+
+<section>
+    <h1>Identifying Module Boundaries</h1>
+    <ul>
+        <li>Layout</li>
+        <li>Animations</li>
+        <li>Data Refreshes</li>
+    </ul>
+    <table id="module-types" class="action">
+        <tr>
+            <td></td>
+            <td>JavaScript Objects</td>
+            <td>jQuery Plug-ins</td>
+            <td>jQuery UI Widgets</td>
+        </tr>
+        <tr>
+            <td>Infrastructure Modules</td>
+            <td>Ideal</td>
+            <td>OK</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Behavioral Modules</td>
+            <td>OK</td>
+            <td>Ideal</td>
+            <td>OK</td>
+        </tr>
+        <tr>
+            <td>UI Modules</td>
+            <td>No</td>
+            <td>OK</td>
+            <td>Ideal</td>
+        </tr>
+    </table>
+</section>
+
+<section data-bg="closing-bg">
+    <h1>Summary</h1>
+    <ul>
+        <li>Benefits of modularity</li>
+        <li>JavaScript Objects</li>
+        <li>jQuery Plug-ins</li>
+        <li>jQuery UI Widgets</li>
+    </ul>
+    <h1>Questions?</h1>
+</section>
+
+<section>
+<h1>Contact Info</h1>
+    <ul>
+        <li>dons@microsoft.com</li>
+        <li>http://blogs.msdn.com/donsmith</li>
+        <li>@locksmithdon</li>
+    </ul>
+    <ul style="margin-top: 1em">
+        <li>http://msdn.com/practices</li>
+        <li>@mspnp</li>
+    </ul>
+    <p style="margin-top: 2em">This presentation is online @</p>
+    <a href="http://locksmithdon.net/talks/jsmodularity.html">http://locksmithdon.net/talks/jsmodularity.html</a>
+</section>
+
+    </div> <!-- #deck -->
+    
+    <script src="js/lib/jquery-1.6.2.min.js"></script>
+    <script src="js/lib/jquery-ui.all.min.js"></script>
+
+    <script src="js/lib/shCore.js"></script>
+    <script src="js/lib/shBrushJScript.js"></script>
+    <script src="js/lib/shBrushXml.js"></script>
+
+    <script src="js/slideshow.js"></script>
+    <script src="js/site.js"></script>
+
+</body>
+</html>

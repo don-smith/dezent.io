@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5 Single-page Interfaces</title>
+
+    <link href="css/slideshow.css" rel="stylesheet" />
+
+    <link href="css/shCoreEclipse.css" rel="stylesheet" />
+    <link href="css/shThemeEclipse.css" rel="stylesheet" />
+
+    <link href="css/site.css" rel="stylesheet" />
+
+    <script src="js/lib/modernizr-2.0.min.js"></script>
+    <script src="js/lib/respond.min.js"></script>
+</head>
+
+<body>
+    
+<div id="deck">
+    
+<section data-bg="title-bg"> 
+<h1 class="title-text">HTML5<br/> Single-page<br/> Interfaces</h1> 
+    <div class="speaker-info">
+        <p>Don Smith</p> 
+        <p>Senior Program Manager</p>
+        <p>Microsoft patterns &amp; practices</p> 
+    </div>
+    <p id="instructions">Use arrow keys to navigate and Ctrl/Cmd -/+ to adjust text and positioning</p>
+</section> 
+
+<section> 
+<h1>Agenda</h1> 
+    <ul>
+        <li>Spectrum of Web Applications</li>
+        <li>Managing HTML &amp; Other Assets</li>
+        <li>Implementing Navigation</li>
+        <li>Module Communication</li>
+        <li>Data Management &amp; Caching</li>
+    </ul>
+    <div class="action abs" style="right: 3em; bottom: 3em; padding: .5em; border: .1em solid white">
+        <p><strong>Project Silk</strong><br/>
+        Client-side Web<br/>
+        Development for<br/>
+        Modern Browsers</p>
+        <p><a href="http://silk.codeplex.com">http://silk.codeplex.com</a></p>
+        <p><a href="http://tinyurl.com/projectsilk">http://tinyurl.com/projectsilk</a></p>
+    </div>
+</section> 
+
+<section>
+<h1>Spectrum of Web Apps</h1>
+    <ul>
+        <li>Static</li>
+        <li>Server Rendered</li>
+        <li>Hybrid Design</li>
+        <li>Single-page Interface</li>
+        <li class="action">Mileage Stats applies<br/> a hybrid design</li>
+        <img src="img/spectrum.jpg" class="image-frame" />
+    </ul>
+</section>
+
+<section data-bg="demo-bg">
+    <h1 style="margin: 4.4em auto; text-align: center;">Mileage Stats</h1>
+</section>
+
+<section>
+<h1>Managing HTML</h1>
+    <h2>Considerations</h2>
+    <ul>
+        <li>Are you also supporting down-level experiences?
+            <ul>
+                <li>If so, you will have at least 2 copies of the HTML</li>
+                <li>Don't try to hard to reuse the HTML from each experience</li>
+            </ul>
+        </li>
+        <li>How is the HTML getting to the browser? Ajax?</li>
+        <li>How is the HTML getting changed?</li>
+    </ul>
+    <h2>Options</h2>
+    <ul>
+        <li>Templates</li>
+        <li>Observable pattern</li>
+        <li>Combine HTML and data on the server</li>
+    </ul>
+</section>
+
+<section>
+<h1>Navigation</h1>
+    <ul>
+        <li>Harmony with the browser
+        <ul><!--
+            <li>Change behavior</li>
+            <li>Without implementations</li>
+            -->
+        </ul>
+        </li>
+
+        <li>The URL matters
+        <ul>
+            <li>Specific resource</li>
+            <li>Application state</li>
+            <!--
+            <li>Emailed/posted</li>
+            <li>Copied/pasted</li>
+            <li>Bookmarked</li>
+            <li>Indexed</li>
+            -->
+        </ul>
+        </li>
+
+        <li class="action">Implementation Options
+        <img id="NavFig" src="img/Ch9NavFig1.png" />
+        <ul>
+            <li>Rewrite links<!-- that don't change (on doc ready) --></li>
+            <li>Capture events</li>
+            <li>Fragment Identifier</li>
+        </ul>
+        </li>
+
+        <li class="action">HTML5 History API
+        <div class="abs" style="top: 5em; width: 19em; right: 1em">
+            <pre class="brush: js; class-name: small-code"> 
+            $('#AboutLink').click(function() {
+                history.pushState(
+                    {foo: 'bar'}, // state object
+                    'About Us',   // title (ignored)
+                    '#about'      // new URL
+                ); // also changes address bar
+            });
+            </pre>
+            <pre class="brush: js; class-name: small-code"> 
+            $(window).bind('popstate', function(e) {
+                // address bar has already changed
+                var state = e.state;
+            });
+            </pre>
+        </div>
+        <ul>
+            <li>'pushState' adds to history</li>
+            <li>Going back fires 'popstate'</li> 
+        </ul>
+        </li>
+
+        <li class="action">Libraries like BBQ can help<br/> with Browser compatibility
+            <div class="abs" style="bottom: 1em; width: 17em; right: 1em">
+                <pre class="brush: js; class-name: small-code"> 
+                var state = $.bbq.getState() || {};
+                state.foo = 'bar;
+                $.bbq.setState(state, 2);
+                </pre>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<section>
+<h1>Communication</h1>
+    <ul>
+        <li>Preferably loosely-coupled
+        <ul>
+            <li>Publish/Subscribe</li>
+            <li>Events through callbacks</li>
+        </ul>
+        </li>
+        <li>Can also use direct method calls</li>
+        <img class="action" src="img/Ch5ModFig7.png" style="width: 90%" />
+    </ul>
+</section>
+
+<section>
+<h1>Getting &amp; Caching Data</h1>
+<h2>Using a JavaScript Object</h2>
+    <ul>
+        <li>jQuery does most of the work</li>
+        <li>Decouple by injecting a sendRequest function</li>
+        <li>Caching uses a URL based key</li>
+    </ul>
+    <div class="abs" style="width: 16em; left: 1em; bottom: 3em">
+    <pre class="brush: js; class-name: small-code"> 
+    mstats.dataStore = {
+      _data = {},
+      get: function(token),
+      set: function(token, payload),
+      clear: function(token),
+      clearAll: function()
+    };
+    </pre>
+    </div>
+    <div class="abs" style="width: 17em; right: 1em; bottom: 3em">
+    <pre class="brush: js; class-name: small-code"> 
+    mstats.dataManager = {
+      dataDefaults = {
+        dataType: 'json',
+        type: 'POST' },
+      sendRequest: function(options),
+      resetData: function(endpoint),
+    };
+    </pre>
+    </div>
+</section>
+
+<section>
+<h1>Caching with Local Storage</h1>
+    <ul>
+        <li>Hard limit of 5Mb per origin</li>
+        <li>Name/value pairs stored as strings</li>
+        <pre class="brush: js; class-name: small-code"> 
+        window.localStorage.setItem('foo', 'foo data');
+        var foo = localStorage.getItem('foo');
+        localStorage.removeItem('foo');
+        </pre>
+        <li>Monitor changes with the 'storage' event</li>
+        <pre class="brush: js; class-name: small-code"> 
+        $(window).bind('storage', function(e) {
+            var key = e.key,
+                url = e.url,
+                oldValue = e.oldValue,
+                newValue = e.newValue;
+        });
+        </pre>
+    </ul>
+</section>
+
+<section>
+<h1>Feature Detection</h1>
+    <ul>
+        <li>Feature detection &gt; browser detection
+        <ul>
+            <li>Browsers evolving too quickly</li>
+            <li>Browsers are auto-updating</li>
+        </ul>
+        </li>
+
+        <li>Modernizr: <a href="http://modernizr.com">http://modernizr.com</a>
+        <ul>
+            <li>Exposes boolean properties</li>
+            <li>Places CSS classes on HTML element</li> 
+        </ul>
+        </li>
+
+        <li>HTML5 Boilerplate: <a href="http://html5boilerplate.com">http://html5boilerplate.com</a>
+        <ul>
+            <li>Includes MUCH more than just Modernizr</li>
+        </li>
+    </ul>
+</section>
+
+<section data-bg="closing-bg">
+    <h1>Summary</h1>
+    <ul>
+        <li>Spectrum of Web Applications</li>
+        <li>Managing HTML &amp; Other Assets</li>
+        <li>Implementing Navigation</li>
+        <li>Module Communication</li>
+        <li>Data Management &amp; Caching</li>
+    </ul>
+    <h1>Questions?</h1>
+</section>
+
+<section>
+<h1>Contact Info</h1>
+    <ul>
+        <li>dons@microsoft.com</li>
+        <li>http://blogs.msdn.com/donsmith</li>
+        <li>@locksmithdon</li>
+    </ul>
+    <ul style="margin-top: 1em">
+        <li>http://msdn.com/practices</li>
+        <li>@mspnp</li>
+    </ul>
+    <p style="margin-top: 2em">This presentation is online @</p>
+    <a href="http://locksmithdon.net/talks/html5spi.html">http://locksmithdon.net/talks/html5spi.html</a>
+</section>
+
+</div>
+
+<script src="js/lib/jquery-1.6.2.min.js"></script>
+<script src="js/lib/jquery-ui.all.min.js"></script>
+
+<script src="js/lib/shCore.js"></script>
+<script src="js/lib/shBrushJScript.js"></script>
+
+<script src="js/slideshow.js"></script>
+<script src="js/site.js"></script>
+<script src="js/html5spi.js"></script>
+
+</body>
+</html>
